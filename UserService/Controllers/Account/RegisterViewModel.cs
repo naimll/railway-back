@@ -5,19 +5,21 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Mango.Services.Identity.MainModule.Account
+namespace UserService.Controllers.Account
 {
     public class RegisterViewModel
     {
-        [Required]
-        public string Username { get; set; }
 
         [Required]
         public string Email { get; set; }
-        public string FirstName { get; set; }
+        [Required]
+        public string Name { get; set; }
         public string LastName { get; set; }
+        
         [Required]
         public string Password { get; set; }
+
+        public DateTime DateOfBirth { get; set; }
 
         public string ReturnUrl { get; set; }
         public string RoleName { get; set; }
@@ -30,7 +32,6 @@ namespace Mango.Services.Identity.MainModule.Account
 
         public bool IsExternalLoginOnly => EnableLocalLogin == false && ExternalProviders?.Count() == 1;
         public string ExternalLoginScheme => IsExternalLoginOnly ? ExternalProviders?.SingleOrDefault()?.AuthenticationScheme : null;
-
 
     }
 }

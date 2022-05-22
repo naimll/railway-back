@@ -2,11 +2,23 @@
   "version": 3,
   "targets": {
     "net5.0": {
-      "Duende.IdentityServer/5.0.5": {
+      "AutoMapper/11.0.1": {
         "type": "package",
         "dependencies": {
-          "Duende.IdentityServer.Storage": "5.0.5",
-          "IdentityModel": "5.0.1",
+          "Microsoft.CSharp": "4.7.0"
+        },
+        "compile": {
+          "lib/netstandard2.1/AutoMapper.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.1/AutoMapper.dll": {}
+        }
+      },
+      "Duende.IdentityServer/5.2.4": {
+        "type": "package",
+        "dependencies": {
+          "Duende.IdentityServer.Storage": "5.2.4",
+          "IdentityModel": "5.1.0",
           "Microsoft.AspNetCore.Authentication.OpenIdConnect": "5.0.0",
           "Microsoft.IdentityModel.Protocols.OpenIdConnect": "6.8.0"
         },
@@ -20,10 +32,10 @@
           "Microsoft.AspNetCore.App"
         ]
       },
-      "Duende.IdentityServer.AspNetIdentity/5.0.5": {
+      "Duende.IdentityServer.AspNetIdentity/5.2.4": {
         "type": "package",
         "dependencies": {
-          "Duende.IdentityServer": "5.0.5"
+          "Duende.IdentityServer": "5.2.4"
         },
         "compile": {
           "lib/net5.0/Duende.IdentityServer.AspNetIdentity.dll": {}
@@ -35,12 +47,12 @@
           "Microsoft.AspNetCore.App"
         ]
       },
-      "Duende.IdentityServer.Storage/5.0.5": {
+      "Duende.IdentityServer.Storage/5.2.4": {
         "type": "package",
         "dependencies": {
-          "IdentityModel": "5.0.1",
+          "IdentityModel": "5.1.0",
           "Microsoft.AspNetCore.DataProtection.Abstractions": "5.0.0",
-          "System.Text.Json": "5.0.0"
+          "System.Text.Json": "5.0.1"
         },
         "compile": {
           "lib/net5.0/Duende.IdentityServer.Storage.dll": {}
@@ -58,11 +70,11 @@
           "lib/netstandard2.0/Humanizer.dll": {}
         }
       },
-      "IdentityModel/5.0.1": {
+      "IdentityModel/5.1.0": {
         "type": "package",
         "dependencies": {
-          "System.Text.Encodings.Web": "5.0.0",
-          "System.Text.Json": "5.0.0"
+          "System.Text.Encodings.Web": "5.0.1",
+          "System.Text.Json": "5.0.1"
         },
         "compile": {
           "lib/net5.0/IdentityModel.dll": {}
@@ -1642,7 +1654,7 @@
           "ref/netstandard1.3/_._": {}
         }
       },
-      "System.Text.Encodings.Web/5.0.0": {
+      "System.Text.Encodings.Web/5.0.1": {
         "type": "package",
         "compile": {
           "lib/netcoreapp3.0/System.Text.Encodings.Web.dll": {}
@@ -1651,7 +1663,7 @@
           "lib/netcoreapp3.0/System.Text.Encodings.Web.dll": {}
         }
       },
-      "System.Text.Json/5.0.0": {
+      "System.Text.Json/5.0.1": {
         "type": "package",
         "compile": {
           "lib/netcoreapp3.0/System.Text.Json.dll": {}
@@ -1824,15 +1836,30 @@
     }
   },
   "libraries": {
-    "Duende.IdentityServer/5.0.5": {
-      "sha512": "ytz+blYJzjNLZKoYwblGWOSMj/RmivsuZHcTKIeDNDBzobEvIkPPNvqOiNFzayfO/80IQbPDiVYJhQ+xjieo5A==",
+    "AutoMapper/11.0.1": {
+      "sha512": "WIadGC1pIwbnyTubvI577p3F++Bsj9q2Q3OaAc1I0QS+JhupN1xkdrPBhI9bPIeg63zM81tZplUNYkqU1HE5jQ==",
       "type": "package",
-      "path": "duende.identityserver/5.0.5",
+      "path": "automapper/11.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "automapper.11.0.1.nupkg.sha512",
+        "automapper.nuspec",
+        "icon.png",
+        "lib/netstandard2.1/AutoMapper.dll",
+        "lib/netstandard2.1/AutoMapper.xml"
+      ]
+    },
+    "Duende.IdentityServer/5.2.4": {
+      "sha512": "P1Bt8HOwVkHNylAKsUpivgX18vGtD/Sh/2S33NhWvZw5tYoLISbVOZVjKrwlueFsQZGzR5P/aToIximOVyHFVw==",
+      "type": "package",
+      "path": "duende.identityserver/5.2.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE",
-        "duende.identityserver.5.0.5.nupkg.sha512",
+        "duende.identityserver.5.2.4.nupkg.sha512",
         "duende.identityserver.nuspec",
         "icon.png",
         "lib/net5.0/Duende.IdentityServer.dll",
@@ -1841,15 +1868,15 @@
         "lib/netcoreapp3.1/Duende.IdentityServer.xml"
       ]
     },
-    "Duende.IdentityServer.AspNetIdentity/5.0.5": {
-      "sha512": "xRDImkoQA4wBgsrCCcrOaqqZMmdC/rEUvPs9f2zLopjneNy0lfpNLkFOCe81XqbGF1jsYDnyuJUN9pH3JDgRww==",
+    "Duende.IdentityServer.AspNetIdentity/5.2.4": {
+      "sha512": "63a4UrYnHvzhf+4Q5niQT8zIBQwDKTd0EUdwEop4dNA8b8/9aH5nVPocUr1zy5c2V+F4huHj3i3r8MKxcacfhQ==",
       "type": "package",
-      "path": "duende.identityserver.aspnetidentity/5.0.5",
+      "path": "duende.identityserver.aspnetidentity/5.2.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE",
-        "duende.identityserver.aspnetidentity.5.0.5.nupkg.sha512",
+        "duende.identityserver.aspnetidentity.5.2.4.nupkg.sha512",
         "duende.identityserver.aspnetidentity.nuspec",
         "icon.png",
         "lib/net5.0/Duende.IdentityServer.AspNetIdentity.dll",
@@ -1858,15 +1885,15 @@
         "lib/netcoreapp3.1/Duende.IdentityServer.AspNetIdentity.xml"
       ]
     },
-    "Duende.IdentityServer.Storage/5.0.5": {
-      "sha512": "2VYUin8xyVZDKt5wP5TUG6kgvIKgh6RTGAxN7kSHPYDGY6BKx8Y/xLxM9h3RPMxmHCkNsp6fO5yYvU/741ryKA==",
+    "Duende.IdentityServer.Storage/5.2.4": {
+      "sha512": "olin/nLpRBUHDWxU47uVJEVZbVcPiXSJZxIwM57P69NT7eOGZBN4a6K1rRWNgphwBwuBesOOfyqLSJJoAOzpVw==",
       "type": "package",
-      "path": "duende.identityserver.storage/5.0.5",
+      "path": "duende.identityserver.storage/5.2.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE",
-        "duende.identityserver.storage.5.0.5.nupkg.sha512",
+        "duende.identityserver.storage.5.2.4.nupkg.sha512",
         "duende.identityserver.storage.nuspec",
         "icon.png",
         "lib/net5.0/Duende.IdentityServer.Storage.dll",
@@ -1891,15 +1918,15 @@
         "logo.png"
       ]
     },
-    "IdentityModel/5.0.1": {
-      "sha512": "njk/AnO85Nc0JWiL3Zf4IAI+7PnlfJbsg3YLchC2oKdgmeFf5d4Px3lhmQyzfH32lp54btyYItXnire8wDYmiQ==",
+    "IdentityModel/5.1.0": {
+      "sha512": "Gcv4YYXncvUvTNLF8lDJyItZzaEDFcEi3geMDtylGcl/Rx90vcV7Kv3yAofktJBW7GvmIjQgC8LtUq0s9XQT2w==",
       "type": "package",
-      "path": "identitymodel/5.0.1",
+      "path": "identitymodel/5.1.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "icon.jpg",
-        "identitymodel.5.0.1.nupkg.sha512",
+        "identitymodel.5.1.0.nupkg.sha512",
         "identitymodel.nuspec",
         "lib/net461/IdentityModel.dll",
         "lib/net461/IdentityModel.pdb",
@@ -5899,10 +5926,10 @@
         "system.text.encoding.extensions.nuspec"
       ]
     },
-    "System.Text.Encodings.Web/5.0.0": {
-      "sha512": "EEslUvHKll1ftizbn20mX3Ix/l4Ygk/bdJ2LY6/X6FlGaP0RIhKMo9nS6JIGnKKT6KBP2PGj6JC3B9/ZF6ErqQ==",
+    "System.Text.Encodings.Web/5.0.1": {
+      "sha512": "KmJ+CJXizDofbq6mpqDoRRLcxgOd2z9X3XoFNULSbvbqVRZkFX3istvr+MUjL6Zw1RT+RNdoI4GYidIINtgvqQ==",
       "type": "package",
-      "path": "system.text.encodings.web/5.0.0",
+      "path": "system.text.encodings.web/5.0.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -5919,16 +5946,16 @@
         "lib/netstandard2.0/System.Text.Encodings.Web.xml",
         "lib/netstandard2.1/System.Text.Encodings.Web.dll",
         "lib/netstandard2.1/System.Text.Encodings.Web.xml",
-        "system.text.encodings.web.5.0.0.nupkg.sha512",
+        "system.text.encodings.web.5.0.1.nupkg.sha512",
         "system.text.encodings.web.nuspec",
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
     },
-    "System.Text.Json/5.0.0": {
-      "sha512": "+luxMQNZ2WqeffBU7Ml6njIvxc8169NW2oU+ygNudXQGZiarjE7DOtN7bILiQjTZjkmwwRZGTtLzmdrSI/Ustw==",
+    "System.Text.Json/5.0.1": {
+      "sha512": "/UM3UK1dXKl8Ybysg/21gM4S8DJgkR+yLU8JwqCVbuNqQNImelntgYFAN5QxR8sJJ1kMx//hOUdf0lltosi8cQ==",
       "type": "package",
-      "path": "system.text.json/5.0.0",
+      "path": "system.text.json/5.0.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -5941,7 +5968,7 @@
         "lib/netcoreapp3.0/System.Text.Json.xml",
         "lib/netstandard2.0/System.Text.Json.dll",
         "lib/netstandard2.0/System.Text.Json.xml",
-        "system.text.json.5.0.0.nupkg.sha512",
+        "system.text.json.5.0.1.nupkg.sha512",
         "system.text.json.nuspec",
         "useSharedDesignerContext.txt",
         "version.txt"
@@ -6483,35 +6510,35 @@
   },
   "projectFileDependencyGroups": {
     "net5.0": [
-      "Duende.IdentityServer.AspNetIdentity >= 5.0.5",
+      "AutoMapper >= 11.0.1",
+      "Duende.IdentityServer.AspNetIdentity >= 5.2.4",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 5.0.17",
       "Microsoft.AspNetCore.Identity.UI >= 5.0.17",
       "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation >= 5.0.17",
+      "Microsoft.EntityFrameworkCore >= 5.0.17",
       "Microsoft.EntityFrameworkCore.SqlServer >= 5.0.17",
       "Microsoft.EntityFrameworkCore.Tools >= 5.0.17"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Dell\\.nuget\\packages\\": {}
+    "/Users/elitahajrizi/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Dell\\Documents\\GitHub\\railway-back\\UserService\\UserService.csproj",
+      "projectUniqueName": "/Users/elitahajrizi/Desktop/railway-back/UserService/UserService.csproj",
       "projectName": "UserService",
-      "projectPath": "C:\\Users\\Dell\\Documents\\GitHub\\railway-back\\UserService\\UserService.csproj",
-      "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Dell\\Documents\\GitHub\\railway-back\\UserService\\obj\\",
+      "projectPath": "/Users/elitahajrizi/Desktop/railway-back/UserService/UserService.csproj",
+      "packagesPath": "/Users/elitahajrizi/.nuget/packages/",
+      "outputPath": "/Users/elitahajrizi/Desktop/railway-back/UserService/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Dell\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/Users/elitahajrizi/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -6530,9 +6557,13 @@
       "net5.0": {
         "targetAlias": "net5.0",
         "dependencies": {
+          "AutoMapper": {
+            "target": "Package",
+            "version": "[11.0.1, )"
+          },
           "Duende.IdentityServer.AspNetIdentity": {
             "target": "Package",
-            "version": "[5.0.5, )"
+            "version": "[5.2.4, )"
           },
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
             "target": "Package",
@@ -6543,6 +6574,10 @@
             "version": "[5.0.17, )"
           },
           "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": {
+            "target": "Package",
+            "version": "[5.0.17, )"
+          },
+          "Microsoft.EntityFrameworkCore": {
             "target": "Package",
             "version": "[5.0.17, )"
           },
@@ -6575,7 +6610,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.408\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.408/RuntimeIdentifierGraph.json"
       }
     }
   }

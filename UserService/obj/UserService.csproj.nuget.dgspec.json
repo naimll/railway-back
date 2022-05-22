@@ -1,27 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Dell\\Documents\\GitHub\\railway-back\\UserService\\UserService.csproj": {}
+    "/Users/elitahajrizi/Desktop/railway-back/UserService/UserService.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Dell\\Documents\\GitHub\\railway-back\\UserService\\UserService.csproj": {
+    "/Users/elitahajrizi/Desktop/railway-back/UserService/UserService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Dell\\Documents\\GitHub\\railway-back\\UserService\\UserService.csproj",
+        "projectUniqueName": "/Users/elitahajrizi/Desktop/railway-back/UserService/UserService.csproj",
         "projectName": "UserService",
-        "projectPath": "C:\\Users\\Dell\\Documents\\GitHub\\railway-back\\UserService\\UserService.csproj",
-        "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Dell\\Documents\\GitHub\\railway-back\\UserService\\obj\\",
+        "projectPath": "/Users/elitahajrizi/Desktop/railway-back/UserService/UserService.csproj",
+        "packagesPath": "/Users/elitahajrizi/.nuget/packages/",
+        "outputPath": "/Users/elitahajrizi/Desktop/railway-back/UserService/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Dell\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/elitahajrizi/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -40,9 +38,13 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[11.0.1, )"
+            },
             "Duende.IdentityServer.AspNetIdentity": {
               "target": "Package",
-              "version": "[5.0.5, )"
+              "version": "[5.2.4, )"
             },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
@@ -53,6 +55,10 @@
               "version": "[5.0.17, )"
             },
             "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": {
+              "target": "Package",
+              "version": "[5.0.17, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[5.0.17, )"
             },
@@ -85,7 +91,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.408\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.408/RuntimeIdentifierGraph.json"
         }
       }
     }

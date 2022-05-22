@@ -11,6 +11,8 @@ namespace UserService.src.Models
 
         public DateTime DateOfBirth { get; set; }
 
-        public DocumentModel Document { get; set; }
+        public DocumentModel? Document { get; set; }
+
+       
     }
 }

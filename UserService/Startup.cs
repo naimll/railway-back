@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using UserService.DbContexts;
+using UserService.Initializer;
 using UserService.src.Models;
 
 namespace UserService
@@ -29,6 +30,7 @@ namespace UserService
         {
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
 
@@ -44,13 +46,15 @@ namespace UserService
               .AddInMemoryClients(StaticDetails.Clients)
               .AddAspNetIdentity<ApplicationUser>();
 
+            services.AddScoped<IDbInitializer, DbInitializer>();
+
             builder.AddDeveloperSigningCredential();
 
             services.AddControllersWithViews();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IDbInitializer dbInitializer)
         {
             if (env.IsDevelopment())
             {
@@ -68,6 +72,7 @@ namespace UserService
             app.UseRouting();
             app.UseIdentityServer();
             app.UseAuthorization();
+            dbInitializer.Initialize();
 
             app.UseEndpoints(endpoints =>
             {

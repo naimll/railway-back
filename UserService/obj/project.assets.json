@@ -6521,24 +6521,26 @@
     ]
   },
   "packageFolders": {
-    "/Users/elitahajrizi/.nuget/packages/": {}
+    "C:\\Users\\Dell\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/elitahajrizi/Desktop/railway-back/UserService/UserService.csproj",
+      "projectUniqueName": "C:\\Users\\Dell\\Documents\\GitHub\\railway-back\\UserService\\UserService.csproj",
       "projectName": "UserService",
-      "projectPath": "/Users/elitahajrizi/Desktop/railway-back/UserService/UserService.csproj",
-      "packagesPath": "/Users/elitahajrizi/.nuget/packages/",
-      "outputPath": "/Users/elitahajrizi/Desktop/railway-back/UserService/obj/",
+      "projectPath": "C:\\Users\\Dell\\Documents\\GitHub\\railway-back\\UserService\\UserService.csproj",
+      "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Dell\\Documents\\GitHub\\railway-back\\UserService\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/elitahajrizi/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\Dell\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -6610,7 +6612,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.408/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.408\\RuntimeIdentifierGraph.json"
       }
     }
   }

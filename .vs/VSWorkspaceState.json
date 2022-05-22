@@ -1,8 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\UserService"
+    "\\UserService",
+    "\\UserService\\Controllers",
+    "\\UserService\\Controllers\\Account",
+    "\\UserService\\obj"
   ],
-  "SelectedNode": "\\UserService",
   "PreviewInSolutionExplorer": false
 }

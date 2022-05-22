@@ -236,8 +236,26 @@ namespace UserService.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Authority")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DateOfExpiry")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateOfIssue")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("DocumentTypeID")
                         .HasColumnType("int");
+
+                    b.Property<string>("ImageName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageURL")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Nationality")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

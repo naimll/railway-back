@@ -9,17 +9,17 @@ namespace UserService.src.Models
 
         public DocumentType DocumentType { get; set; }
 
-        private string _Nationality { get; set; }
+        public string Nationality { get; set; }
 
-        private DateTime _DateOfIssue { get; set; }
+        public DateTime DateOfIssue { get; set; }
 
-        private DateTime _DateOfExpiry { get; set; }
+        public DateTime DateOfExpiry { get; set; }
 
-        private string _Authority { get; set; }
+        public string Authority { get; set; }
 
-        private string _ImageName { get; set; }
+        public string ImageName { get; set; }
 
-        private string _ImageURL { get; set; }
+        public string ImageURL { get; set; }
     }
 }
 

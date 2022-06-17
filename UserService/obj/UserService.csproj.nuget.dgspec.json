@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\DELL\\source\\repos\\UserService\\UserService.csproj": {}
+    "C:\\Users\\DELL\\source\\repos\\railway-back\\UserService\\UserService.csproj": {}
   },
   "projects": {
-    "C:\\Users\\DELL\\source\\repos\\UserService\\UserService.csproj": {
+    "C:\\Users\\DELL\\source\\repos\\railway-back\\UserService\\UserService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\DELL\\source\\repos\\UserService\\UserService.csproj",
+        "projectUniqueName": "C:\\Users\\DELL\\source\\repos\\railway-back\\UserService\\UserService.csproj",
         "projectName": "UserService",
-        "projectPath": "C:\\Users\\DELL\\source\\repos\\UserService\\UserService.csproj",
+        "projectPath": "C:\\Users\\DELL\\source\\repos\\railway-back\\UserService\\UserService.csproj",
         "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\DELL\\source\\repos\\UserService\\obj\\",
+        "outputPath": "C:\\Users\\DELL\\source\\repos\\railway-back\\UserService\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -120,7 +120,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.105\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.408\\RuntimeIdentifierGraph.json"
         }
       }
     }

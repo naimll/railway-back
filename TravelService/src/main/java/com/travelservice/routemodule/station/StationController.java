@@ -1,7 +1,7 @@
-package com.travelservice.Controllers;
+package com.travelservice.routemodule.station;
 
-import com.travelservice.Entities.Station;
-import com.travelservice.Repositories.StationRepository;
+import com.travelservice.routemodule.route.Route;
+import com.travelservice.routemodule.route.RouteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,9 +13,31 @@ import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:8080")
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/stations")
 public class StationController {
+
+    private final StationService stationService;
+
     @Autowired
+    public StationController(StationService stationService){
+        this.stationService = stationService;
+    }
+
+    @GetMapping
+    public List<Station> getStations(){
+        return stationService.getStations();
+    }
+
+    @PostMapping
+    public void createNewStations(@RequestBody Station station){
+        stationService.addNewStation(station);
+    }
+
+    @DeleteMapping(path = "{stationId}")
+    public void deleteStation(@PathVariable("stationId") Long stationId){
+        stationService.deleteStation(stationId);
+    }
+ /*   @Autowired
     StationRepository stationRepository;
     @GetMapping("/stations")
     public ResponseEntity<List<Station>> getAllStations(@RequestParam(required = false) String city)
@@ -102,6 +124,6 @@ public class StationController {
         }catch(Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-    }
+    }*/
 
 }

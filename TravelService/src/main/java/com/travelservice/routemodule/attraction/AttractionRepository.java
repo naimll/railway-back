@@ -1,7 +1,8 @@
-package com.travelservice.Repositories;
+/*
+package com.travelservice.routemodule.attraction;
 
 
-import com.travelservice.Entities.Attraction;
+import com.travelservice.routemodule.attraction.Attraction;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -16,3 +17,4 @@ public interface AttractionRepository extends JpaRepository<Attraction, Integer>
 
     Optional<Attraction> findById(@Param("attraction_id") Integer attraction_id);
 }
+*/

@@ -1,12 +1,10 @@
-package com.travelservice.Controllers;
+/*
+package com.travelservice.routemodule.attraction;
 
 
 import an.awesome.pipelinr.Pipeline;
-import com.travelservice.Entities.Attraction;
-import com.travelservice.Repositories.AttractionRepository;
 import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.neo4j.Neo4jProperties;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -121,3 +119,4 @@ public class AttractionController {
 
 }
 
+*/

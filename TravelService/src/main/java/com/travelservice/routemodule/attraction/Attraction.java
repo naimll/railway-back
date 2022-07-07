@@ -1,4 +1,6 @@
-package com.travelservice.Entities;
+/*
+package com.travelservice.routemodule.attraction;
+import com.travelservice.routemodule.route.Route;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -42,3 +44,4 @@ public class Attraction {
     }
 
 }
+*/

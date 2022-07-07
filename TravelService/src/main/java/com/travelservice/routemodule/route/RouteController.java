@@ -1,17 +1,10 @@
-package com.travelservice.Controllers;
+package com.travelservice.routemodule.route;
 
 //import com.hekurudhe.app.route.Requests.RouteAdditionRequest;
 //import com.hekurudhe.app.route.Services.RouteService;
 
-import com.travelservice.Entities.Route;
-import com.travelservice.Repositories.RouteRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,15 +19,36 @@ import java.util.Optional;
 @RequestMapping("api/routes")
 public class RouteController {
 
+    private final RouteService routeService;
+
     @Autowired
+    public RouteController(RouteService routeService){
+        this.routeService = routeService;
+    }
+
+    @GetMapping
+    public List<Route> getRoutes(){
+        return routeService.getRoutes();
+    }
+
+    @PostMapping
+    public void createNewRoute(@RequestBody Route route){
+        routeService.addNewRoute(route);
+    }
+
+    @DeleteMapping(path = "{routeId}")
+    public void deleteRoute(@PathVariable("routeId") Long routeId){
+        routeService.deleteRoute(routeId);
+    }
+ /*   @Autowired
     RouteRepository routeRepository;
 
-/*  @PostMapping
+*//*  @PostMapping
 
   public void createRoute(@RequestBody RouteAdditionRequest routeAdditionRequest) {
      log.info("route",routeAdditionRequest);
       routeService.addRoute(routeAdditionRequest);
-  }*/
+  }*//*
 
     @GetMapping
     public ResponseEntity<List<Route>> getAllRoutes(@RequestParam(required = false) Integer startPoint) {
@@ -76,7 +90,7 @@ public class RouteController {
         }
     }
 
-/*   @GetMapping("/{startPoint}-{endPoint}")
+*//*   @GetMapping("/{startPoint}-{endPoint}")
     public ResponseEntity<List<Route>> findByStartAndEndPoint(@PathVariable("startPoint") Integer startPoint, @PathVariable("endPoint") Integer endPoint) {
         try {
             List<Route> routes = routeRepository.findByEndAndStartPoint(startPoint,endPoint);
@@ -87,9 +101,9 @@ public class RouteController {
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-    }*/
+    }*//*
 
-  /*  @GetMapping("/points}")
+  *//*  @GetMapping("/points}")
     public ResponseEntity<List<Route>> findByPoints(@Param("startPoint")Integer startPoint, @Param("endPoint") Integer endPoint, @Param("middlePoint") Integer middlePoint) {
         try {
             List<Route> routes = routeRepository.findByPoints(startPoint, endPoint, middlePoint);
@@ -101,7 +115,7 @@ public class RouteController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-*/
+*//*
 
     @PostMapping
     public ResponseEntity<Route> createRoute(@RequestBody Route route){
@@ -149,5 +163,5 @@ public class RouteController {
         }catch(Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-    }
+    }*/
 }

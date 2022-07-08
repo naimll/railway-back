@@ -1,5 +1,5 @@
-/*
 package com.travelservice.routemodule.attraction;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.travelservice.routemodule.route.Route;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Builder
@@ -15,25 +17,18 @@ import javax.persistence.*;
 @Entity
 public class Attraction {
     @Id
-    @SequenceGenerator(
-            name = "attraction_id_sequence",
-            sequenceName = "attraction_id_sequence"
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "attraction_id_sequence"
-    )
-    @Column (name ="attraction_Id")
-    private Integer Id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long id;
     private String attractionName;
     private String location;
     private String description;
+
+    @Column(nullable = true, length = 64)
     private String image;
 
-    @ManyToOne
-    @JoinColumn(name="Id")
-    private Route route;
-
+    @JsonIgnore
+    @ManyToMany(mappedBy = "attractions")
+    List<Route> routes = new ArrayList<>();
 
 
     public Attraction(String attractionName, String location, String description, String image){
@@ -44,4 +39,3 @@ public class Attraction {
     }
 
 }
-*/

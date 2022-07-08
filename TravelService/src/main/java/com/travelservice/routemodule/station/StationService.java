@@ -32,7 +32,6 @@ public class StationService {
     }
 
     public void deleteStation(Long stationId) {
-
         stationRepository.deleteById(stationId);
     }
 }

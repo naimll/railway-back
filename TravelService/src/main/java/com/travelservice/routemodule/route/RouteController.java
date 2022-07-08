@@ -3,6 +3,7 @@ package com.travelservice.routemodule.route;
 //import com.hekurudhe.app.route.Requests.RouteAdditionRequest;
 //import com.hekurudhe.app.route.Services.RouteService;
 
+import com.travelservice.routemodule.station.Station;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -39,6 +40,14 @@ public class RouteController {
     @DeleteMapping(path = "{routeId}")
     public void deleteRoute(@PathVariable("routeId") Long routeId){
         routeService.deleteRoute(routeId);
+    }
+
+    @PutMapping(path = "{routeId}")
+    public void updateRoute(
+            @PathVariable("routeId") Long routeId,
+            @RequestBody Route updatedRoute
+    ){
+        routeService.updateRoute(routeId, updatedRoute);
     }
  /*   @Autowired
     RouteRepository routeRepository;
@@ -90,7 +99,7 @@ public class RouteController {
         }
     }
 
-*//*   @GetMapping("/{startPoint}-{endPoint}")
+*//*   @GetMapping("/{startPoint}&{endPoint}")
     public ResponseEntity<List<Route>> findByStartAndEndPoint(@PathVariable("startPoint") Integer startPoint, @PathVariable("endPoint") Integer endPoint) {
         try {
             List<Route> routes = routeRepository.findByEndAndStartPoint(startPoint,endPoint);

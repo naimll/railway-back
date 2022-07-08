@@ -1,57 +1,47 @@
-/*
 package com.travelservice.routemodule.attraction;
 
 
 import an.awesome.pipelinr.Pipeline;
+import com.travelservice.routemodule.station.Station;
+import com.travelservice.routemodule.station.StationService;
 import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-//@CrossOrigin(origins = "http://localhost:8080")
-
 @RefreshScope
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/attractions")
 public class AttractionController {
+
+    private final AttractionService attractionService;
     @Autowired
-    AttractionRepository attractionRepository;
-    Pipeline pipeline;
-    @GetMapping("/attractions")
-    public ResponseEntity<List<Attraction>> getAllAttractions(@RequestParam(required = false) String location) {
-        try {
-            List<Attraction> attractions = new ArrayList<Attraction>();
-            if (location == null)
-                attractionRepository.findAll().forEach(attractions::add);
-            else
-                attractionRepository.findByLocationContaining(location).forEach(attractions::add);
-            if (attractions.isEmpty()) {
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            }
-            return new ResponseEntity<>(attractions, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    public AttractionController(AttractionService attractionService){
+        this.attractionService = attractionService;
     }
 
-
-    @GetMapping("/attractions/{id}")
-    public Optional<Attraction> getAttractionById(Authentication authentication, @PathVariable("id") Integer Id){
-        Optional<Attraction> attractionData = attractionRepository.findById(Id);
-//        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication()
-//                .getPrincipal();
-//        String username = userDetails.getUsername();
-        System.out.println("\n[username]: " + authentication.toString() + "\n");
-        return attractionData;
-
-
+    @GetMapping
+    public List<Attraction> getAttractions(){
+        return attractionService.getAttractions();
     }
+
+    @PostMapping
+    public void createNewAttraction(@RequestParam("file") MultipartFile file, @RequestBody Attraction attraction){
+        attractionService.addAttraction(file,attraction);
+    }
+   /* @PostMapping("/upload")
+    public void createNewAttraction(@RequestParam("file") MultipartFile file){
+        attractionService.uploadFile(file);
+    }
+*/
+
 
 //    @GetMapping("/attractions/{attractionName}")
 //    public ResponseEntity<Attraction> getAttractionByName(@PathVariable("attractionName") String attractionName){
@@ -63,7 +53,7 @@ public class AttractionController {
 //        }
 //    }
 
-    @PostMapping("/attractions/{attraction}/{location}/{description}/{image}")
+    /*@PostMapping("/attractions/{attraction}/{location}/{description}/{image}")
     public org.apache.http.HttpStatus createAttraction(@PathVariable("attraction") String attraction, @PathVariable("location")String location, @PathVariable("description")String description, @PathVariable("image")String image){
 
         try{
@@ -78,45 +68,30 @@ public class AttractionController {
         }catch(Exception e){
             return null;
         }
-    }
+    }*/
 
 
-    @PutMapping("/attractions/{id}")
-    public ResponseEntity<Attraction> updateAttraction(@PathVariable("id") Integer Id, @RequestBody Attraction attraction){
-        Optional<Attraction> attractionData = attractionRepository.findById(Id);
+    /*@PutMapping("/{id}")
+    public ResponseEntity<Attraction> updateAttraction(@PathVariable("id") Long id, @RequestBody Attraction attraction){
+        Optional<Attraction> attractionData = attractionRepository.findById(id);
         if(attractionData.isPresent()){
             Attraction _attraction = attractionData.get();
             _attraction.setAttractionName(attraction.getAttractionName());
             _attraction.setLocation(attraction.getLocation());
             _attraction.setDescription(attraction.getDescription());
             _attraction.setImage(attraction.getImage());
-            _attraction.setRoute(attraction.getRoute());
+            _attraction.setRoutes(attraction.getRoutes());
             return new ResponseEntity<>(attractionRepository.save(_attraction), HttpStatus.OK);
         }else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+    }*/
+
+    @DeleteMapping(path = "{attractionId}")
+    public void deleteAttraction(@PathVariable("attractionId") Long attractionId){
+        attractionService.deleteAttraction(attractionId);
     }
 
-    @DeleteMapping("/attractions/{id}")
-    public ResponseEntity<HttpStatus> deleteAttraction(@PathVariable("id") Integer Id){
-        try{
-            attractionRepository.deleteById(Id);
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }catch(Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    @DeleteMapping("/attractions")
-    public ResponseEntity<HttpStatus> deleteAllAttractions(){
-        try{
-            attractionRepository.deleteAll();
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }catch(Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
 
 }
 
-*/

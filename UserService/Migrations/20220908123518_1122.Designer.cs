@@ -10,8 +10,8 @@ using UserService.Context;
 namespace UserService.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220524113812_AddUser")]
-    partial class AddUser
+    [Migration("20220908123518_1122")]
+    partial class _1122
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

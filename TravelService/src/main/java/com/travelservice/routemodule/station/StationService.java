@@ -31,6 +31,9 @@ public class StationService {
         stationRepository.save(station);
     }
 
+    public List<StationSelect> getStationSelect(){
+        return stationRepository.findAllStation();
+    }
     public void deleteStation(Long stationId) {
         stationRepository.deleteById(stationId);
     }

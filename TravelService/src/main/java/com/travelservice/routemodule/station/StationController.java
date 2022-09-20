@@ -125,5 +125,10 @@ public class StationController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }*/
+    @GetMapping("/getStationSelect")
+    public ResponseEntity<List<StationSelect>> getStationSelect(){
+        List<StationSelect> s = stationService.getStationSelect();
+        return new ResponseEntity<>(s,HttpStatus.ACCEPTED);
+    }
 
 }

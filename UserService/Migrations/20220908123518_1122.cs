@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace UserService.Migrations
 {
-    public partial class AddUser : Migration
+    public partial class _1122 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

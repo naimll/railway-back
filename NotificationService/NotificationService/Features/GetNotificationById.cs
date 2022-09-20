@@ -1,12 +1,15 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using NotificationService.Context;
 using NotificationService.Helpers;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+
 
 namespace NotificationService.Features
 {
@@ -14,7 +17,7 @@ namespace NotificationService.Features
     {
         public class Query : IRequest<IEnumerable<Response>>
         {
-
+            public string Token { get; set; }
         }
         public class QueryHandler : IRequestHandler<Query, IEnumerable<Response>>
         {
@@ -25,9 +28,15 @@ namespace NotificationService.Features
             }
             public async Task<IEnumerable<Response>> Handle(Query request, CancellationToken cancellationToken)
             {
-                var userId = UserHelper.GetUserId();
+                var handler = new JwtSecurityTokenHandler();
+                
+                var jwtSecurityToken = handler.ReadJwtToken(request.Token);
+
+                var result = jwtSecurityToken.Claims.First(claim => claim.Type == "id").Value;
+                int userId = Int32.Parse(result);
+
                 return await _dbContext.Notifications
-                     .Where(x => x.UserId == userId || x.UserId == null)
+                     .Where(x => x.UserId == userId)
                      .OrderByDescending(x => x.TimeSent)
                      .AsNoTracking()
                      .Select(notification => new Response

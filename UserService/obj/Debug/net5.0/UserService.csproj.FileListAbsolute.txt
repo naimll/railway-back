@@ -159,6 +159,7 @@ C:\Users\DELL\source\repos\railway-back\UserService\bin\Debug\net5.0\ref\UserSer
 C:\Users\DELL\source\repos\railway-back\UserService\obj\Debug\net5.0\UserService.csprojAssemblyReference.cache
 C:\Users\DELL\source\repos\railway-back\UserService\obj\Debug\net5.0\staticwebassets\UserService.StaticWebAssets.xml
 =======
+>>>>>>> 54e1a7145994abbeed57847d8b6d4cd0aaf0eab8
 C:/Users/DELL/source/repos/UserService/obj/Debug/net5.0/UserService.csproj.AssemblyReference.cache
 C:/Users/DELL/source/repos/UserService/obj/Debug/net5.0/UserService.GeneratedMSBuildEditorConfig.editorconfig
 C:/Users/DELL/source/repos/UserService/obj/Debug/net5.0/UserService.AssemblyInfoInputs.cache
@@ -397,4 +398,3 @@ C:/Users/DELL/source/repos/railway-back/UserService/obj/Debug/net5.0/UserService
 /Users/elitahajrizi/Desktop/railway-back/UserService/obj/Debug/net5.0/ref/UserService.dll
 /Users/elitahajrizi/Desktop/railway-back/UserService/obj/Debug/net5.0/UserService.pdb
 /Users/elitahajrizi/Desktop/railway-back/UserService/obj/Debug/net5.0/UserService.genruntimeconfig.cache
->>>>>>> 54e1a7145994abbeed57847d8b6d4cd0aaf0eab8

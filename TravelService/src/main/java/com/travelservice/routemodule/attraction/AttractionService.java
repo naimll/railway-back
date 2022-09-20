@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Base64;
 import java.util.List;
@@ -21,9 +22,9 @@ public class AttractionService {
     public List<Attraction> getAttractions() {return attractionRepository.findAll();}
 
 
-    public void addAttraction(MultipartFile file, Attraction attraction){
+    public void addAttraction(File file, Attraction attraction){
         //Attraction a = new Attraction();
-        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+        String fileName = StringUtils.cleanPath(file.getName());
         if(fileName.contains("..")){
             System.out.println("Not a proper file!");
         }
@@ -31,8 +32,8 @@ public class AttractionService {
         a.setLocation(location);
         a.setDescription(description);*/
         try{
-            attraction.setImage(Base64.getEncoder().encodeToString(file.getBytes()));
-        }catch(IOException e){
+            attraction.setImage(Base64.getEncoder().encodeToString(new byte[]{1,2,2}));
+        }catch(Exception e){
             e.printStackTrace();
         }
 

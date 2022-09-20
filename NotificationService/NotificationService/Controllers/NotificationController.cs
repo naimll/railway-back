@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
@@ -59,7 +60,8 @@ namespace NotificationService.Controllers
         [HttpGet("get-user-notification")]
         public async Task<IActionResult> getUserNotification()
         {
-            var result = await Mediator.Send(new GetNotificationById.Query { });
+            var u = HttpContext.GetTokenAsync("access_token");
+            var result = await Mediator.Send(new GetNotificationById.Query { Token = u.Result }) ;
             return Ok(result);
         }
 

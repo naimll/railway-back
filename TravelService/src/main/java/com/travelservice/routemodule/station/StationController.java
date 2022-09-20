@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/stations")
 public class StationController {
@@ -125,5 +125,10 @@ public class StationController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }*/
+    @GetMapping("/getStationSelect")
+    public ResponseEntity<List<StationSelect>> getStationSelect(){
+        List<StationSelect> s = stationService.getStationSelect();
+        return new ResponseEntity<>(s,HttpStatus.ACCEPTED);
+    }
 
 }

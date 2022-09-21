@@ -2,6 +2,9 @@ package com.travelservice.routemodule.route;
 
 import com.travelservice.routemodule.station.Station;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -24,18 +27,17 @@ public class RouteService {
     }
 
     public void addNewRoute(Route route){
-        Optional<Route> routeByDistance =
-                routeRepository.findRouteByDistance(route.getDistance());
-        if(routeByDistance.isPresent()){
-            throw new IllegalStateException("route taken!");
-        }
+//        Optional<Route> routeByDistance =
+//                routeRepository.findRouteByDistance(route.getDistance());
+//        if(routeByDistance.isPresent()){
+//            throw new IllegalStateException("route taken!");
+//        }
 
         routeRepository.save(route);
     }
 
 
     public void deleteRoute(Long routeId) {
-
         routeRepository.deleteById(routeId);
     }
 
@@ -65,5 +67,10 @@ public class RouteService {
         if(updatedRoute.getAttractions() != null && !Objects.equals(route.getAttractions(), updatedRoute.getAttractions())){
             route.setAttractions(updatedRoute.getAttractions());
         }
+    }
+
+    public Page<Route> findBySearchCriteria(Specification<Route> routeSpec, Pageable page){
+        Page<Route> searchResult = routeRepository.findAll(routeSpec, page);
+        return searchResult;
     }
 }

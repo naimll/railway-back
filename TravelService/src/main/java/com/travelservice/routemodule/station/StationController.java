@@ -33,6 +33,13 @@ public class StationController {
         stationService.addNewStation(station);
     }
 
+    @PutMapping(path = "{stationId}")
+    public void updateStation(
+            @PathVariable("stationId") Long stationId,
+            @RequestBody Station updatedStation
+    ){
+        stationService.updateStation(stationId, updatedStation);
+    }
     @DeleteMapping(path = "{stationId}")
     public void deleteStation(@PathVariable("stationId") Long stationId){
         stationService.deleteStation(stationId);

@@ -5,7 +5,9 @@ import com.travelservice.routemodule.route.RouteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -31,10 +33,30 @@ public class StationService {
         stationRepository.save(station);
     }
 
+    @Transactional
+    public void updateStation(Long stationId, Station updatedStation) {
+        Station station = stationRepository.findById(stationId)
+                .orElseThrow(() -> new IllegalStateException(
+                        "station with id " + stationId + " does not exist!"
+                ));
+
+        if(updatedStation.getStationName() != null && !Objects.equals(station.getStationName(), updatedStation.getStationName())){
+            station.setStationName(updatedStation.getStationName());
+        }
+
+        if(updatedStation.getCity() != null && !Objects.equals(station.getCity(), updatedStation.getCity())){
+            station.setCity(updatedStation.getCity());
+        }
+
+        if(updatedStation.getLocation() != null && !Objects.equals(station.getLocation(), updatedStation.getLocation())){
+            station.setLocation(updatedStation.getLocation());
+        }
+    }
     public List<StationSelect> getStationSelect(){
         return stationRepository.findAllStation();
     }
     public void deleteStation(Long stationId) {
         stationRepository.deleteById(stationId);
     }
+
 }

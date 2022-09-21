@@ -1,11 +1,17 @@
 package com.travelservice.routemodule.route;
 
-//import com.hekurudhe.app.route.Requests.RouteAdditionRequest;
-//import com.hekurudhe.app.route.Services.RouteService;
+import com.travelservice.advSearch.APIResponse;
+import com.travelservice.advSearch.SearchCriteria;
+import com.travelservice.routemodule.route.routeSearch.RouteSearchDto;
+import com.travelservice.routemodule.route.routeSearch.RouteSpecificationBuilder;
 
-import com.travelservice.routemodule.station.Station;
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +25,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("api/routes")
 public class RouteController {
+
 
     private final RouteService routeService;
 
@@ -37,11 +44,6 @@ public class RouteController {
         routeService.addNewRoute(route);
     }
 
-    @DeleteMapping(path = "{routeId}")
-    public void deleteRoute(@PathVariable("routeId") Long routeId){
-        routeService.deleteRoute(routeId);
-    }
-
     @PutMapping(path = "{routeId}")
     public void updateRoute(
             @PathVariable("routeId") Long routeId,
@@ -49,6 +51,40 @@ public class RouteController {
     ){
         routeService.updateRoute(routeId, updatedRoute);
     }
+    @DeleteMapping(path = "{routeId}")
+    public void deleteRoute(@PathVariable("routeId") Long routeId){
+        routeService.deleteRoute(routeId);
+    }
+
+    @PostMapping(path = "search")
+    public ResponseEntity<APIResponse> searchRoutes(@RequestParam(name="pageNr", defaultValue = "0") int pageNr,
+                                                    @RequestParam(name="pageSize", defaultValue = "10") int pageSize,
+                                                    @RequestBody RouteSearchDto routeSearchDto){
+        APIResponse apiResponse = new APIResponse();
+        RouteSpecificationBuilder builder = new RouteSpecificationBuilder();
+
+        List<SearchCriteria> criteriaList = routeSearchDto.getSearchCriteriaList();
+        if(criteriaList != null){
+            criteriaList.forEach(
+                    x->{
+                        x.setDataOption(routeSearchDto.getDataOption());
+                        builder.with(x);
+                    }
+            );
+        }
+
+        Pageable page = PageRequest.of(pageNr, pageSize, Sort.by("startPoint").ascending()
+                .and(Sort.by("endPoint")).ascending().and(Sort.by("distance")).ascending());
+
+        Page<Route> routePage = routeService.findBySearchCriteria(builder.build(), page);
+
+        apiResponse.setData(routePage.toList());
+        apiResponse.setResponseCode(HttpStatus.OK);
+        apiResponse.setMessage("Successfully retrieved route record");
+
+        return new ResponseEntity<>(apiResponse, apiResponse.getResponseCode());
+    }
+
  /*   @Autowired
     RouteRepository routeRepository;
 

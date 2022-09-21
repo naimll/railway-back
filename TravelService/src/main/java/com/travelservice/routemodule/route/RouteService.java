@@ -33,9 +33,11 @@ public class RouteService {
 //            throw new IllegalStateException("route taken!");
 //        }
 
+        Double d = calculateDistance(route.getStartPoint().getLatitude(), route.getStartPoint().getLongitude(), route.getEndPoint().getLatitude(),  route.getEndPoint().getLongitude());
+        route.setDistance(d);
+        route.setDuration(calculateDuration(d));
         routeRepository.save(route);
     }
-
 
     public void deleteRoute(Long routeId) {
         routeRepository.deleteById(routeId);
@@ -47,6 +49,9 @@ public class RouteService {
                 .orElseThrow(() -> new IllegalStateException(
                         "route with id " + routeId + " does not exist!"
                 ));
+
+        /*Double d =  calculateDistance(updatedRoute.getStartPoint().getLatitude(), updatedRoute.getStartPoint().getLongitude(), updatedRoute.getEndPoint().getLatitude(), updatedRoute.getEndPoint().getLongitude());
+        Double dur = calculateDuration(d);*/
 
         if(updatedRoute.getStartPoint() != null && !Objects.equals(route.getStartPoint(), updatedRoute.getStartPoint())){
             route.setStartPoint(updatedRoute.getStartPoint());
@@ -60,17 +65,57 @@ public class RouteService {
             route.setMiddlePoints(updatedRoute.getMiddlePoints());
         }
 
-        if(updatedRoute.getDistance() != 0 && !Objects.equals(route.getDistance(), updatedRoute.getDistance())){
-            route.setDistance(updatedRoute.getDistance());
-        }
-
         if(updatedRoute.getAttractions() != null && !Objects.equals(route.getAttractions(), updatedRoute.getAttractions())){
             route.setAttractions(updatedRoute.getAttractions());
         }
+
+        if(updatedRoute.getDistance() != null && !Objects.equals(route.getDistance(), updatedRoute.getDistance())){
+            route.setDistance(updatedRoute.getDistance());
+        }
+
+        if(updatedRoute.getDuration() != null && !Objects.equals(route.getDuration(), updatedRoute.getDuration())){
+            route.setDuration(updatedRoute.getDuration());
+        }
+
+//        if(updatedRoute.getDistance() != null && !Objects.equals(route.getDistance(), updatedRoute.getDistance())){
+//            route.setDistance(d);
+//        }
+//
+//        if(updatedRoute.getDuration() != null && !Objects.equals(route.getDuration(), updatedRoute.getDuration())){
+//            route.setDuration(dur);
+//        }
     }
 
     public Page<Route> findBySearchCriteria(Specification<Route> routeSpec, Pageable page){
         Page<Route> searchResult = routeRepository.findAll(routeSpec, page);
         return searchResult;
+    }
+
+    //nese ka me shume middlepoints me jau llogarite edhe atyne. me shku startpoint middlepoint tani middlepoint endpoint
+    public Double calculateDistance(Double latStart, Double longStart, Double latEnd, Double longEnd){
+        Double a = 0.0;
+
+        latStart = Math.toRadians(latStart);
+        latEnd = Math.toRadians(latEnd);
+        longStart = Math.toRadians(longStart);
+        longEnd = Math.toRadians(longEnd);
+
+        Double dLat = latEnd - latStart;
+        Double dLong = longEnd - longStart;
+        a = Math.pow(Math.sin(dLat/2), 2) + Math.cos(latStart) * Math.cos(latEnd)
+                * Math.pow(Math.sin(dLong/2), 2);
+
+        Double c = 2 * Math.asin(Math.sqrt(a));
+
+        Double r = 6371.0;
+
+        return c * r;
+    }
+
+    public Double calculateDuration(Double dist){
+        Double trainSpeed = 80.0;
+        Double duration = dist/trainSpeed;
+
+        return duration * 60;
     }
 }

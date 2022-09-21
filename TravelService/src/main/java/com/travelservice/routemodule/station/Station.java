@@ -23,8 +23,13 @@ public class Station {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     private String stationName;
-    private Long location;
+
+    private Double longitude;
+
+    private Double latitude;
     private String city;
+
+    private String country;
 
     @JsonIgnore
     @OneToMany(mappedBy = "startPoint")
@@ -38,10 +43,12 @@ public class Station {
     private List<Route> middlePointRoutes = new ArrayList<>();
 
 
-    public Station(String stationName, Long location, String city, List<Route> startPointRoutes, List<Route> endPointRoutes, List<Route> middlePointRoutes) {
+    public Station(String stationName, Double latitude, Double longitude, String city, String country, List<Route> startPointRoutes, List<Route> endPointRoutes, List<Route> middlePointRoutes) {
         this.stationName = stationName;
-        this.location = location;
+        this.latitude = latitude;
+        this.longitude = longitude;
         this.city = city;
+        this.country = country;
         this.startPointRoutes = startPointRoutes;
         this.endPointRoutes = endPointRoutes;
         this.middlePointRoutes = middlePointRoutes;

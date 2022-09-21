@@ -67,25 +67,7 @@ public class StationController {
         }
     }
 
-    @GetMapping("/stations/{id}")
-    public ResponseEntity<Station> getStationById(@PathVariable("id") Integer Id){
-        Optional<Station> stationData = stationRepository.findById(Id);
-        if(stationData.isPresent()){
-            return new ResponseEntity<>(stationData.get(), HttpStatus.OK);
-        }else{
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
 
-    @GetMapping("/stations/{stationName}")
-    public ResponseEntity<Station> getStationByName(@PathVariable("stationName") String stationName){
-        Optional<Station> stationData = Optional.ofNullable(stationRepository.findByStationName(stationName));
-        if(stationData.isPresent()){
-            return new ResponseEntity<>(stationData.get(), HttpStatus.OK);
-        }else{
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
 
     @PostMapping("/stations")
     public ResponseEntity<Station> createStation(@RequestBody Station station){

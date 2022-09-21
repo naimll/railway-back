@@ -48,8 +48,16 @@ public class StationService {
             station.setCity(updatedStation.getCity());
         }
 
-        if(updatedStation.getLocation() != null && !Objects.equals(station.getLocation(), updatedStation.getLocation())){
-            station.setLocation(updatedStation.getLocation());
+        if(updatedStation.getCountry() != null && !Objects.equals(station.getCountry(), updatedStation.getCountry())){
+            station.setCountry(updatedStation.getCountry());
+        }
+
+        if(updatedStation.getLatitude() != null && !Objects.equals(station.getLatitude(), updatedStation.getLatitude())){
+            station.setLatitude(updatedStation.getLatitude());
+        }
+
+        if(updatedStation.getLongitude() != null && !Objects.equals(station.getLongitude(), updatedStation.getLongitude())){
+            station.setLongitude(updatedStation.getLongitude());
         }
     }
     public List<StationSelect> getStationSelect(){

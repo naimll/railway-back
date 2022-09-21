@@ -42,6 +42,8 @@ public class Route {
      List<Station> middlePoints = new ArrayList<>();
     private Double distance;
 
+    private Double duration;
+
     @ManyToMany
     @JoinTable(
             name = "route_attractions",
@@ -49,11 +51,12 @@ public class Route {
             inverseJoinColumns = @JoinColumn(name = "attraction_id", referencedColumnName = "id")
     )
      List<Attraction> attractions = new ArrayList<>();
-    public Route(Station startPoint , Station endPoint, List<Station> middlePoints, Double distance, List<Attraction> attractions){
+    public Route(Station startPoint , Station endPoint, List<Station> middlePoints, Double distance, Double duration, List<Attraction> attractions){
         this.startPoint = startPoint;
         this.endPoint = endPoint;
         this.middlePoints = middlePoints;
         this.distance = distance;
+        this.duration = duration;
         this.attractions = attractions;
     }
 

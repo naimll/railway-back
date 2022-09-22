@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -22,8 +23,6 @@ public class Attraction {
     private String attractionName;
     private String location;
     private String description;
-
-    @Column(nullable = true, length = 64)
     private String image;
 
     @JsonIgnore

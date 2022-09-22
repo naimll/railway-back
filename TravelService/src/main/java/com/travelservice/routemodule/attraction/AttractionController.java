@@ -3,6 +3,7 @@ package com.travelservice.routemodule.attraction;
 
 import an.awesome.pipelinr.Pipeline;
 import com.travelservice.routemodule.NotificationModel;
+import com.travelservice.routemodule.route.Route;
 import com.travelservice.routemodule.station.Station;
 import com.travelservice.routemodule.station.StationService;
 import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
@@ -10,22 +11,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.RequestEntity;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RequestCallback;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
+//import org.springframework.http.MediaType;
 import java.io.File;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RefreshScope
 @RestController
 @RequestMapping("/api/attractions")
@@ -42,21 +45,28 @@ public class AttractionController {
         return attractionService.getAttractions();
     }
 
-    @PostMapping
-    @Consumes(MediaType.MULTIPART_FORM_DATA)
-    @Produces({ MediaType.APPLICATION_JSON})
-    public void createNewAttraction(@FormParam("") File file, @RequestBody Attraction attraction){
-        RestTemplate restTemplate = new RestTemplate();
-        String uri = "https://localhost:44326/api/v1/notification/sendNotificationToAll";
-        NotificationModel n = new NotificationModel("Hello","Hello","Hello");
-        NotificationModel result = restTemplate.postForObject(uri,n,NotificationModel.class);
-        attractionService.addAttraction(file,attraction);
+    @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
+    @Produces({ MediaType.APPLICATION_JSON_VALUE})
+    public Attraction addAttraction(
+                              @RequestPart("attraction") String attraction,
+                              @RequestPart("file") MultipartFile file){
+            RestTemplate restTemplate = new RestTemplate();
+            String uri = "https://localhost:44326/api/v1/notification/sendNotificationToAll";
+            NotificationModel n = new NotificationModel("Hello","Hello","Hello");
+            NotificationModel result = restTemplate.postForObject(uri,n,NotificationModel.class);
+        Attraction aJson = attractionService.getJson(attraction, file);
+        return aJson;
     }
-   /* @PostMapping("/upload")
-    public void createNewAttraction(@RequestParam("file") MultipartFile file){
-        attractionService.uploadFile(file);
+
+    @PutMapping(path = "{attractionId}", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
+    public void updateAttraction(
+            @PathVariable("attractionId") Long attractionId,
+            @RequestPart("attraction") Attraction updatedAttraction,
+            @RequestPart("file") MultipartFile file
+    ){
+        attractionService.updateAttraction(attractionId,updatedAttraction, file);
     }
-*/
+
 
 
 //    @GetMapping("/attractions/{attractionName}")

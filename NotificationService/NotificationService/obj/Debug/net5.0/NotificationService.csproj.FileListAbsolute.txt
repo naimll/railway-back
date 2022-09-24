@@ -5,7 +5,6 @@ C:\Users\DELL\source\repos\railway-back\NotificationService\NotificationService\
 C:\Users\DELL\source\repos\railway-back\NotificationService\NotificationService\bin\Debug\net5.0\NotificationService.runtimeconfig.json
 C:\Users\DELL\source\repos\railway-back\NotificationService\NotificationService\bin\Debug\net5.0\NotificationService.runtimeconfig.dev.json
 C:\Users\DELL\source\repos\railway-back\NotificationService\NotificationService\bin\Debug\net5.0\NotificationService.dll
-C:\Users\DELL\source\repos\railway-back\NotificationService\NotificationService\bin\Debug\net5.0\ref\NotificationService.dll
 C:\Users\DELL\source\repos\railway-back\NotificationService\NotificationService\bin\Debug\net5.0\NotificationService.pdb
 C:\Users\DELL\source\repos\railway-back\NotificationService\NotificationService\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.dll
 C:\Users\DELL\source\repos\railway-back\NotificationService\NotificationService\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Abstractions.dll
@@ -15,7 +14,6 @@ C:\Users\DELL\source\repos\railway-back\NotificationService\NotificationService\
 C:\Users\DELL\source\repos\railway-back\NotificationService\NotificationService\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\DELL\source\repos\railway-back\NotificationService\NotificationService\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\DELL\source\repos\railway-back\NotificationService\NotificationService\bin\Debug\net5.0\System.Diagnostics.DiagnosticSource.dll
-C:\Users\DELL\source\repos\railway-back\NotificationService\NotificationService\obj\Debug\net5.0\NotificationService.csprojAssemblyReference.cache
 C:\Users\DELL\source\repos\railway-back\NotificationService\NotificationService\obj\Debug\net5.0\NotificationService.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\DELL\source\repos\railway-back\NotificationService\NotificationService\obj\Debug\net5.0\NotificationService.AssemblyInfoInputs.cache
 C:\Users\DELL\source\repos\railway-back\NotificationService\NotificationService\obj\Debug\net5.0\NotificationService.AssemblyInfo.cs
@@ -23,7 +21,6 @@ C:\Users\DELL\source\repos\railway-back\NotificationService\NotificationService\
 C:\Users\DELL\source\repos\railway-back\NotificationService\NotificationService\obj\Debug\net5.0\NotificationService.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\DELL\source\repos\railway-back\NotificationService\NotificationService\obj\Debug\net5.0\NotificationService.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\DELL\source\repos\railway-back\NotificationService\NotificationService\obj\Debug\net5.0\staticwebassets\NotificationService.StaticWebAssets.Manifest.cache
-C:\Users\DELL\source\repos\railway-back\NotificationService\NotificationService\obj\Debug\net5.0\staticwebassets\NotificationService.StaticWebAssets.xml
 C:\Users\DELL\source\repos\railway-back\NotificationService\NotificationService\obj\Debug\net5.0\scopedcss\bundle\NotificationService.styles.css
 C:\Users\DELL\source\repos\railway-back\NotificationService\NotificationService\obj\Debug\net5.0\NotificationService.RazorTargetAssemblyInfo.cache
 C:\Users\DELL\source\repos\railway-back\NotificationService\NotificationService\obj\Debug\net5.0\NotificationService.csproj.CopyComplete
@@ -64,3 +61,5 @@ C:\Users\DELL\source\repos\railway-back\NotificationService\NotificationService\
 C:\Users\DELL\source\repos\railway-back\NotificationService\NotificationService\bin\Debug\net5.0\MediatR.Contracts.dll
 C:\Users\DELL\source\repos\railway-back\NotificationService\NotificationService\bin\Debug\net5.0\MediatR.Extensions.Microsoft.DependencyInjection.dll
 C:\Users\DELL\source\repos\railway-back\NotificationService\NotificationService\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\DELL\source\repos\railway-back\NotificationService\NotificationService\obj\Debug\net5.0\NotificationService.csproj.AssemblyReference.cache
+C:\Users\DELL\source\repos\railway-back\NotificationService\NotificationService\obj\Debug\net5.0\refint\NotificationService.dll

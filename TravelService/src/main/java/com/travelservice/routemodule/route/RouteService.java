@@ -1,6 +1,7 @@
 package com.travelservice.routemodule.route;
 
 import com.travelservice.routemodule.station.Station;
+import com.travelservice.routemodule.station.StationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,23 +17,26 @@ import java.util.Optional;
 public class RouteService {
 
     private final RouteRepository routeRepository;
-
+    private final StationRepository stationRepository;
     @Autowired
-    public RouteService(RouteRepository routeRepository){
+    public RouteService(RouteRepository routeRepository, StationRepository stationRepository){
         this.routeRepository = routeRepository;
+        this.stationRepository = stationRepository;
     }
 
     public List<Route> getRoutes(){
         return routeRepository.findAll();
     }
 
-    public void addNewRoute(Route route){
+    public void addNewRoute(Long startPoint, Long endPoint){
 //        Optional<Route> routeByDistance =
 //                routeRepository.findRouteByDistance(route.getDistance());
 //        if(routeByDistance.isPresent()){
 //            throw new IllegalStateException("route taken!");
 //        }
-
+        Optional<Station> start = stationRepository.findById(startPoint);
+        Optional<Station> end = stationRepository.findById(endPoint);
+        Route route = new Route(start.get(),end.get(),null,null,null,null);
         Double d = calculateDistance(route.getStartPoint().getLatitude(), route.getStartPoint().getLongitude(), route.getEndPoint().getLatitude(),  route.getEndPoint().getLongitude());
         route.setDistance(d);
         route.setDuration(calculateDuration(d));

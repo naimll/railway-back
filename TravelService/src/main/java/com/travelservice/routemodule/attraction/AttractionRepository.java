@@ -12,5 +12,6 @@ import java.util.Optional;
 public interface AttractionRepository extends JpaRepository<Attraction, Long> {
     Optional<Attraction> findByAttractionName(String attractionName);
     List<Attraction> findByLocationContaining(@Param("location") String location);
+    Attraction findById(long id);
     
 }

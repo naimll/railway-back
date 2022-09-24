@@ -32,10 +32,10 @@ namespace NotificationService.Features
                 
                 var jwtSecurityToken = handler.ReadJwtToken(request.Token);
 
-                var result = jwtSecurityToken.Claims.First(claim => claim.Type == "id").Value;
+                var result = jwtSecurityToken.Claims.First(claim => claim.Type == "nameid").Value;
                 int userId = Int32.Parse(result);
 
-                return await _dbContext.Notifications
+                var response = await _dbContext.Notifications
                      .Where(x => x.UserId == userId)
                      .OrderByDescending(x => x.TimeSent)
                      .AsNoTracking()
@@ -50,6 +50,20 @@ namespace NotificationService.Features
                      }
                     )
                      .ToListAsync(cancellationToken);
+                var response1 = await _dbContext.PublicNotifications
+                    .OrderByDescending(x => x.TimeSent)
+                    .AsNoTracking()
+                    .Select(notification => new Response
+                    {
+                        NotificationSubject = notification.Subject,
+                        NotificationMessage = notification.Body,
+                        IsRead = notification.IsActive,
+                        UserID = 0,
+                        Url = notification.URL,
+                        TimeSent = notification.TimeSent
+                    }).ToListAsync();
+                response.AddRange(response1);
+                return response.OrderByDescending(s=>s.TimeSent);
             }
         }
         public class Response

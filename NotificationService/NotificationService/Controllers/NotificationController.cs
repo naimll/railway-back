@@ -29,6 +29,7 @@ namespace NotificationService.Controllers
         }
 
         [HttpPost("sendNotificationToAll")]
+        [AllowAnonymous]
         public async Task<IActionResult> sendNotification(SendMessageToAll.Command command)
         {
            

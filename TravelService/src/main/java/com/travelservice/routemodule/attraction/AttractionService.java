@@ -1,7 +1,9 @@
 package com.travelservice.routemodule.attraction;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.travelservice.routemodule.NotificationModel;
 import com.travelservice.routemodule.route.Route;
+import com.travelservice.routemodule.services.NotificationServiceClient;
 import com.travelservice.routemodule.station.Station;
 import io.swagger.v3.core.util.Json;
 import org.apache.tomcat.jni.Directory;
@@ -38,6 +40,8 @@ public class AttractionService {
     private final Path root = Paths.get("uploads");
 
     @Autowired
+    private NotificationServiceClient notificationServiceClient;
+    @Autowired
     public AttractionService(AttractionRepository attractionRepository){this.attractionRepository = attractionRepository;}
 
     public List<Attraction> getAttractions() {return attractionRepository.findAll();}
@@ -45,7 +49,9 @@ public class AttractionService {
     /*public void addAttraction(Attraction attraction){
         attractionRepository.save(attraction);
     }*/
-
+    public Attraction getById(long id){
+        return attractionRepository.findById(id);
+    }
     public void init(){
         if(!Files.exists(root)){
             try {
@@ -93,8 +99,8 @@ public class AttractionService {
 //        attractionRepository.save(a);
 //        return a;
 //    }
-    public Attraction getJson(String attraction, MultipartFile file){
-        Attraction aJson = new Attraction();
+    public Attraction getJson(String attraction,String location,String description, MultipartFile file){
+        Attraction aJson = new Attraction(attraction,location,description,file.getOriginalFilename());
         try{
             ObjectMapper objectMapper = new ObjectMapper();
             aJson = objectMapper.readValue(attraction, Attraction.class);
@@ -107,6 +113,7 @@ public class AttractionService {
         save(file);
         load(file.getOriginalFilename());
         attractionRepository.save(aJson);
+        notificationServiceClient.sendNotificationToAll(new NotificationModel("HEllo from Spring","ss","as"));
         return aJson;
     }
 

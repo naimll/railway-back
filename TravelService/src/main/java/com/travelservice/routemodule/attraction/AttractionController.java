@@ -9,10 +9,9 @@ import com.travelservice.routemodule.station.StationService;
 import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.context.annotation.Bean;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
@@ -24,9 +23,7 @@ import javax.ws.rs.Produces;
 import java.io.File;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RefreshScope
@@ -35,9 +32,11 @@ import java.util.Optional;
 public class AttractionController {
 
     private final AttractionService attractionService;
+    RestTemplate restTemplate;
     @Autowired
-    public AttractionController(AttractionService attractionService){
+    public AttractionController(AttractionService attractionService, RestTemplate r){
         this.attractionService = attractionService;
+        restTemplate = r;
     }
 
     @GetMapping
@@ -45,39 +44,59 @@ public class AttractionController {
         return attractionService.getAttractions();
     }
 
-    @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
+    @PostMapping(consumes = { MediaType.APPLICATION_JSON_VALUE,MediaType.MULTIPART_FORM_DATA_VALUE})
     @Produces({ MediaType.APPLICATION_JSON_VALUE})
     public Attraction addAttraction(
-                              @RequestPart("attraction") String attraction,
+                              String attraction,
+                              String location,
+                              String description,
                               @RequestPart("file") MultipartFile file){
-            RestTemplate restTemplate = new RestTemplate();
-            String uri = "https://localhost:44326/api/v1/notification/sendNotificationToAll";
-            NotificationModel n = new NotificationModel("Hello","Hello","Hello");
-            NotificationModel result = restTemplate.postForObject(uri,n,NotificationModel.class);
-        Attraction aJson = attractionService.getJson(attraction, file);
+
+//            String uri = "http://localhost:44326/api/v1/notification/sendNotificationToAll";
+//
+//        HttpHeaders headers = new HttpHeaders();
+//        // set `content-type` header
+//        headers.setContentType(MediaType.APPLICATION_JSON);
+//        // set `accept` header
+////        headers.add("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36");
+//
+//        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+//        NotificationModel n = new NotificationModel("Hello From JAVA","Hello","Hello");
+//        HttpEntity<NotificationModel> entity = new HttpEntity<>(n, headers);
+//        NotificationModel result =
+//                restTemplate.exchange(uri, HttpMethod.POST, entity, NotificationModel.class).getBody();
+
+
+        Attraction aJson = attractionService.getJson(attraction,location,description, file);
         return aJson;
     }
 
-    @PutMapping(path = "{attractionId}", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
+    @PostMapping(path="updateAttraction",consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
+    @Produces({ MediaType.APPLICATION_JSON_VALUE})
     public void updateAttraction(
-            @PathVariable("attractionId") Long attractionId,
-            @RequestPart("attraction") Attraction updatedAttraction,
+           Long id,
+            String attractionName,
+            String description,
+            String location,
+            String image,
             @RequestPart("file") MultipartFile file
     ){
-        attractionService.updateAttraction(attractionId,updatedAttraction, file);
+        Attraction a = new Attraction(attractionName,location,description,image);
+        a.setId(id);
+        attractionService.updateAttraction(id,a, file);
     }
 
 
 
-//    @GetMapping("/attractions/{attractionName}")
-//    public ResponseEntity<Attraction> getAttractionByName(@PathVariable("attractionName") String attractionName){
-//        Optional<Attraction> attractionData = Optional.ofNullable(attractionRepository.findByAttractionName(attractionName));
-//        if(attractionData.isPresent()){
-//            return new ResponseEntity<>(attractionData.get(), HttpStatus.OK);
-//        }else{
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-//    }
+    @GetMapping("/attractions/{attractionId}")
+    public ResponseEntity<Attraction> getAttractionById(@PathVariable("attractionId") Long attractionId){
+        Optional<Attraction> attractionData = Optional.ofNullable(attractionService.getById(attractionId));
+        if(attractionData.isPresent()){
+            return new ResponseEntity<>(attractionData.get(), HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 
     /*@PostMapping("/attractions/{attraction}/{location}/{description}/{image}")
     public org.apache.http.HttpStatus createAttraction(@PathVariable("attraction") String attraction, @PathVariable("location")String location, @PathVariable("description")String description, @PathVariable("image")String image){

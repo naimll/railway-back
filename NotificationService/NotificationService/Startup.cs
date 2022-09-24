@@ -45,7 +45,7 @@ namespace NotificationService
                 {
                     builder.AllowAnyMethod();
                     builder.AllowAnyHeader();
-                    builder.WithOrigins("http://localhost:3000");
+                    builder.WithOrigins("http://localhost:3000", "http://localhost:8080");
                     builder.AllowCredentials();
                 });
             });
@@ -145,7 +145,7 @@ namespace NotificationService
                 options.DocExpansion(DocExpansion.None);
             });
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
             app.UseCors(corsPolicyName);
             app.UseRouting();
             AppContextHelper.Configure(app.ApplicationServices.GetRequiredService<IHttpContextAccessor>());

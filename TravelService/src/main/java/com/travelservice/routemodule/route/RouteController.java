@@ -13,6 +13,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,9 +22,9 @@ import java.util.List;
 import java.util.Optional;
 
 
-@Slf4j
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@RequestMapping("api/routes")
+@RequestMapping("/api/routes")
 public class RouteController {
 
 
@@ -39,9 +40,9 @@ public class RouteController {
         return routeService.getRoutes();
     }
 
-    @PostMapping
-    public void createNewRoute(@RequestBody Route route){
-        routeService.addNewRoute(route);
+    @PostMapping(path="add")
+    public void createNewRoute(@RequestParam(name="startPoint") Long startPoint,@RequestParam(name="endPoint") Long endPoint){
+        routeService.addNewRoute(startPoint,endPoint);
     }
 
     @PutMapping(path = "{routeId}")

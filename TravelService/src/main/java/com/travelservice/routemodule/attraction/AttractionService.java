@@ -32,7 +32,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-
 @Service
 public class AttractionService {
 
@@ -41,19 +40,27 @@ public class AttractionService {
 
     @Autowired
     private NotificationServiceClient notificationServiceClient;
+
     @Autowired
-    public AttractionService(AttractionRepository attractionRepository){this.attractionRepository = attractionRepository;}
+    public AttractionService(AttractionRepository attractionRepository) {
+        this.attractionRepository = attractionRepository;
+    }
 
-    public List<Attraction> getAttractions() {return attractionRepository.findAll();}
+    public List<Attraction> getAttractions() {
+        return attractionRepository.findAll();
+    }
 
-    /*public void addAttraction(Attraction attraction){
-        attractionRepository.save(attraction);
-    }*/
-    public Attraction getById(long id){
+    /*
+     * public void addAttraction(Attraction attraction){
+     * attractionRepository.save(attraction);
+     * }
+     */
+    public Attraction getById(long id) {
         return attractionRepository.findById(id);
     }
-    public void init(){
-        if(!Files.exists(root)){
+
+    public void init() {
+        if (!Files.exists(root)) {
             try {
                 Files.createDirectory(root);
             } catch (IOException e) {
@@ -62,7 +69,7 @@ public class AttractionService {
         }
     }
 
-    public void save(MultipartFile file){
+    public void save(MultipartFile file) {
         try {
             Files.copy(file.getInputStream(), this.root.resolve(file.getOriginalFilename()));
         } catch (Exception e) {
@@ -70,7 +77,7 @@ public class AttractionService {
         }
     }
 
-    public Resource load(String filename){
+    public Resource load(String filename) {
         try {
             Path pathFile = root.resolve(filename);
             Resource resource = new UrlResource(pathFile.toUri());
@@ -84,27 +91,29 @@ public class AttractionService {
             throw new RuntimeException("Error: " + e.getMessage());
         }
     }
-//        public Attraction addAttraction(MultipartFile file, String attractionName, String location, String desc){
-//        Attraction a = new Attraction();
-//
-//
-//        try{
-//            a.setImage(Base64.getEncoder().encodeToString(file.getBytes()));
-//        }catch(IOException e){
-//            e.printStackTrace();
-//        }
-//        a.setAttractionName(attractionName);
-//        a.setLocation(location);
-//        a.setDescription(desc);
-//        attractionRepository.save(a);
-//        return a;
-//    }
-    public Attraction getJson(String attraction,String location,String description, MultipartFile file){
-        Attraction aJson = new Attraction(attraction,location,description,file.getOriginalFilename());
-        try{
+
+    // public Attraction addAttraction(MultipartFile file, String attractionName,
+    // String location, String desc){
+    // Attraction a = new Attraction();
+    //
+    //
+    // try{
+    // a.setImage(Base64.getEncoder().encodeToString(file.getBytes()));
+    // }catch(IOException e){
+    // e.printStackTrace();
+    // }
+    // a.setAttractionName(attractionName);
+    // a.setLocation(location);
+    // a.setDescription(desc);
+    // attractionRepository.save(a);
+    // return a;
+    // }
+    public Attraction getJson(String attraction, String location, String description, MultipartFile file) {
+        Attraction aJson = new Attraction(attraction, location, description, file.getOriginalFilename());
+        try {
             ObjectMapper objectMapper = new ObjectMapper();
             aJson = objectMapper.readValue(attraction, Attraction.class);
-        }catch (IOException err){
+        } catch (IOException err) {
             System.out.printf("Error", err.toString());
         }
         String imgName = StringUtils.cleanPath(file.getOriginalFilename());
@@ -113,36 +122,39 @@ public class AttractionService {
         save(file);
         load(file.getOriginalFilename());
         attractionRepository.save(aJson);
-        notificationServiceClient.sendNotificationToAll(new NotificationModel("HEllo from Spring","ss","as"));
+        notificationServiceClient.sendNotificationToAll(new NotificationModel("HEllo from Spring", "ss", "as"));
         return aJson;
     }
 
     @Transactional
-    public void updateAttraction(Long attractionId, @RequestPart("attraction") Attraction updatedAttraction, @RequestPart("file") MultipartFile updatedFile) {
+    public void updateAttraction(Long attractionId, @RequestPart("attraction") Attraction updatedAttraction,
+            @RequestPart("file") MultipartFile updatedFile) {
         Attraction attraction = attractionRepository.findById(attractionId)
                 .orElseThrow(() -> new IllegalStateException(
-                        "attraction with id " + attractionId + " does not exist!"
-                ));
+                        "attraction with id " + attractionId + " does not exist!"));
 
-//        String attrString = attraction.toString();
-//
-//        if(updateAttraction != null && !attrString.equals(updatedAttraction)){
-//            attrString = updatedAttraction;
-//        }
+        // String attrString = attraction.toString();
+        //
+        // if(updateAttraction != null && !attrString.equals(updatedAttraction)){
+        // attrString = updatedAttraction;
+        // }
 
-        if(updatedAttraction.getAttractionName() != null && !Objects.equals(attraction.getAttractionName(), updatedAttraction.getAttractionName())){
+        if (updatedAttraction.getAttractionName() != null
+                && !Objects.equals(attraction.getAttractionName(), updatedAttraction.getAttractionName())) {
             attraction.setAttractionName(updatedAttraction.getAttractionName());
         }
 
-        if(updatedAttraction.getLocation() != null && !Objects.equals(attraction.getLocation(), updatedAttraction.getLocation())){
+        if (updatedAttraction.getLocation() != null
+                && !Objects.equals(attraction.getLocation(), updatedAttraction.getLocation())) {
             attraction.setLocation(updatedAttraction.getLocation());
         }
 
-        if(updatedAttraction.getDescription() != null && !Objects.equals(attraction.getDescription(), updatedAttraction.getDescription())){
+        if (updatedAttraction.getDescription() != null
+                && !Objects.equals(attraction.getDescription(), updatedAttraction.getDescription())) {
             attraction.setDescription(updatedAttraction.getDescription());
         }
 
-        if(!Objects.equals(attraction.getImage(), (StringUtils.cleanPath(updatedFile.getOriginalFilename())))){
+        if (!Objects.equals(attraction.getImage(), (StringUtils.cleanPath(updatedFile.getOriginalFilename())))) {
             File fileToDelete = new File("uploads/" + attraction.getImage());
             fileToDelete.delete();
             attraction.setImage(StringUtils.cleanPath(updatedFile.getOriginalFilename()));
@@ -152,10 +164,10 @@ public class AttractionService {
         }
 
     }
+
     public void deleteAttraction(Long attractionId) {
 
         attractionRepository.deleteById(attractionId);
     }
-
 
 }

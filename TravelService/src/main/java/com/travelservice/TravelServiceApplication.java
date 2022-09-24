@@ -1,6 +1,5 @@
 package com.travelservice;
 
-
 import org.apache.http.conn.ssl.NoopHostnameVerifier;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
 import org.apache.http.impl.client.HttpClients;
@@ -25,7 +24,6 @@ import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
-
 @SpringBootApplication
 @EnableFeignClients
 public class TravelServiceApplication {
@@ -33,6 +31,7 @@ public class TravelServiceApplication {
     public static void main(String[] args) {
         SpringApplication.run(TravelServiceApplication.class, args);
     }
+
     @Bean
     public RestTemplate getRestTemplate() {
         return new RestTemplate();
@@ -45,8 +44,7 @@ public class TravelServiceApplication {
             public ClientHttpRequestFactory buildRequestFactory() {
                 return new HttpComponentsClientHttpRequestFactory(
                         HttpClients.custom().setSSLSocketFactory(
-                                new SSLConnectionSocketFactory(sslContext
-                                        , NoopHostnameVerifier.INSTANCE)).build());
+                                new SSLConnectionSocketFactory(sslContext, NoopHostnameVerifier.INSTANCE)).build());
             }
         };
     }
@@ -58,6 +56,4 @@ public class TravelServiceApplication {
                 .build();
     }
 
-
 }
-

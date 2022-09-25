@@ -1,5 +1,6 @@
 package com.travelservice.trainmodule.seat;
 
+import com.travelservice.trainmodule.train.Train;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -10,7 +11,10 @@ import java.util.Optional;
 @Repository
 public interface SeatRepository extends JpaRepository<Seat, Long> {
 
-    Optional<Seat> findById(Long id);
+    Optional<Seat> findByTrainId(Train trainId);
+
+    Optional<Seat> findSeatById (Long seatId);
+
 
 
     @Query("SELECT s FROM Seat s WHERE s.status = false")

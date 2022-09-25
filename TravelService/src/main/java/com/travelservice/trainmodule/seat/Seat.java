@@ -1,7 +1,8 @@
 package com.travelservice.trainmodule.seat;
 
 
-import com.travelservice.routemodule.station.Station;
+
+/*import com.ticketService.ticket.Ticket; */
 import com.travelservice.trainmodule.train.Train;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,8 +11,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.List;
+
 
 
 @Data
@@ -31,8 +31,14 @@ public class Seat {
     Long id;
 
     @ManyToOne
-    @JoinColumn(name="train_id", referencedColumnName = "id")
+    @JoinColumn(name="trainId", referencedColumnName = "id")
     private Train trainId;
+
+   /* @OneToOne
+    @JoinColumn(name="ticketId", referencedColumnName = "id")
+    private Ticket ticketId; */
+
+
     @NotNull
     private boolean status;
     enum SeatCategory {
@@ -45,11 +51,13 @@ public class Seat {
 
 
 
-    public Seat (Train trainId, boolean status, SeatCategory seatCategory){
+    public Seat (Train trainId, boolean status/*, Ticket ticketId*/, SeatCategory seatCategory){
 
         this.status = status;
-        this.seatCategory=seatCategory;
         this.trainId=trainId;
+        /*this.ticketId=ticketId;*/
+        this.seatCategory=seatCategory;
+
     }
 
 

@@ -2,7 +2,6 @@ package com.travelservice.trainmodule.train;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.travelservice.routemodule.route.Route;
 import com.travelservice.trainmodule.seat.Seat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,6 +24,8 @@ public class Train {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
+
+    private String trainName;
     private int nrOfSeats;
     private int nrOfWagons;
 
@@ -43,8 +44,8 @@ public class Train {
 
 
 
-    public Train (int nrOfSeats, int nrOfWagons,List<Seat> seatIdSeats,TrainCategory trainCategory){
-
+    public Train (String trainName, int nrOfSeats, int nrOfWagons,List<Seat> seatIdSeats,TrainCategory trainCategory){
+        this.trainName = trainName;
         this.nrOfSeats = nrOfSeats;
         this.nrOfWagons = nrOfWagons;
         this.seatIdSeats=seatIdSeats;

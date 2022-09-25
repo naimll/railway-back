@@ -1,7 +1,6 @@
 package com.travelservice.trainmodule.train;
 
-import com.travelservice.routemodule.route.Route;
-import com.travelservice.routemodule.station.Station;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

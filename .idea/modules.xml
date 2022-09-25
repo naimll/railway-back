@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/EurekaService/EurekaService.iml" filepath="$PROJECT_DIR$/EurekaService/EurekaService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GatewayService/GatewayService.iml" filepath="$PROJECT_DIR$/GatewayService/GatewayService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TravelService/TravelService.iml" filepath="$PROJECT_DIR$/TravelService/TravelService.iml" />
       <module fileurl="file://$PROJECT_DIR$/railway-back.iml" filepath="$PROJECT_DIR$/railway-back.iml" />
     </modules>
   </component>

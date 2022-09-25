@@ -3,8 +3,13 @@
   <component name="Encoding">
     <file url="file://$USER_HOME$/Desktop/HRMS-LAB-2021-master/hrms/gateway-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/EurekaService/src/main/java" charset="UTF-8" />
+<<<<<<< HEAD
     <file url="file://$PROJECT_DIR$/GatewayService/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/GatewayService/src/main/resources" charset="UTF-8" />
+=======
+    <file url="file://$PROJECT_DIR$/TicketService/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/TicketService/src/main/resources" charset="UTF-8" />
+>>>>>>> 2857ba196dd8f0338e09e1f9d5993aecc6a807f9
     <file url="file://$PROJECT_DIR$/TravelService/src/main/java" charset="UTF-8" />
   </component>
 </project>

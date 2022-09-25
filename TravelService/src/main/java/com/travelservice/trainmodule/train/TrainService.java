@@ -23,10 +23,10 @@ public class TrainService {
     }
 
     public void addNewTrain(Train train){
-        Optional<Train> trainById =
-                trainRepository.findById(train.getId());
-        if(trainById.isPresent()){
-            throw new IllegalStateException("train exists!");
+
+        if (trainRepository.findByTrainName(train.getTrainName()).isPresent()){
+
+            throw new IllegalStateException("train exists");
         }
         trainRepository.save(train);
     }
@@ -43,6 +43,9 @@ public class TrainService {
                         "train with id " + trainId + " does not exist!"
                 ));
 
+       if(updatedTrain.getTrainName() != null && !Objects.equals(train.getTrainName(), updatedTrain.getTrainName())){
+           train.setTrainName(updatedTrain.getTrainName());
+       }
         if(updatedTrain.getNrOfSeats() != 0 && !Objects.equals(train.getNrOfSeats(), updatedTrain.getNrOfSeats())){
             train.setNrOfSeats(updatedTrain.getNrOfSeats());
         }

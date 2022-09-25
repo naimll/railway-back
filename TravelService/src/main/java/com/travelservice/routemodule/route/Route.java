@@ -1,9 +1,7 @@
 package com.travelservice.routemodule.route;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.travelservice.routemodule.attraction.Attraction;
 import com.travelservice.routemodule.station.Station;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -51,6 +49,9 @@ public class Route {
             inverseJoinColumns = @JoinColumn(name = "attraction_id", referencedColumnName = "id")
     )
      List<Attraction> attractions = new ArrayList<>();
+
+
+
     public Route(Station startPoint , Station endPoint, List<Station> middlePoints, Double distance, Double duration, List<Attraction> attractions){
         this.startPoint = startPoint;
         this.endPoint = endPoint;

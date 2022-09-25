@@ -2,6 +2,7 @@ package com.travelservice.trainmodule.seat;
 
 import com.travelservice.routemodule.station.Station;
 import com.travelservice.routemodule.station.StationService;
+import com.travelservice.travelmodule.Trip;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
@@ -39,6 +40,13 @@ public class SeatController {
     @PostMapping(path = "{seatId}")
     public Seat selectSeat(@PathVariable("seatId") Long seatId){
         return seatService.selectSeat(seatId);
+    }
+    @PutMapping(path = "{seatId}")
+    public void updateSeat(
+            @PathVariable("seatId") Long seatId,
+            @RequestBody Seat updatedSeat
+    ) {
+        seatService.updateSeat(seatId, updatedSeat);
     }
 
 

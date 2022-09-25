@@ -6,9 +6,13 @@
       <list>
         <option value="$PROJECT_DIR$/EurekaService/pom.xml" />
         <option value="$PROJECT_DIR$/TravelService/pom.xml" />
+<<<<<<< HEAD
         <option value="$USER_HOME$/Desktop/HRMS-LAB-2021-master/hrms/gateway-service/pom.xml" />
         <option value="$PROJECT_DIR$/gateway-service/pom.xml" />
         <option value="$PROJECT_DIR$/GatewayService/pom.xml" />
+=======
+        <option value="$PROJECT_DIR$/TicketService/pom.xml" />
+>>>>>>> 2857ba196dd8f0338e09e1f9d5993aecc6a807f9
       </list>
     </option>
   </component>

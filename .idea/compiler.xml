@@ -9,16 +9,14 @@
         <outputRelativeToContentRoot value="true" />
         <module name="TravelService" />
         <module name="EurekaService" />
+        <module name="GatewayService" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="EurekaService" target="11" />
-      <module name="TravelService" target="11" />
-    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="EurekaService" options="-parameters" />
+      <module name="GatewayService" options="-parameters" />
       <module name="TravelService" options="-parameters" />
     </option>
   </component>

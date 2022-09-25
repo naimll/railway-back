@@ -1,4 +1,4 @@
-package com.travelservice.travelmodule;
+package com.travelservice.travelmodule.tripSearch;
 
 import com.travelservice.advSearch.SearchCriteria;
 import lombok.AllArgsConstructor;

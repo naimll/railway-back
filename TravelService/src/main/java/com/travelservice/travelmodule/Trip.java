@@ -1,11 +1,13 @@
 package com.travelservice.travelmodule;
 
+
 import com.travelservice.routemodule.route.Route;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.client.RestTemplate;
 
 import javax.persistence.*;
 import java.sql.Time;
@@ -21,9 +23,9 @@ public class Trip {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private LocalDateTime departure_time;
+    private LocalDateTime departureTime;
 
-    private LocalDateTime arrival_time;
+    private LocalDateTime arrivalTime;
 
     private String status;
 
@@ -32,10 +34,12 @@ public class Trip {
     @ManyToOne
     @JoinColumn(name="routeTrip_id", referencedColumnName = "id")
     private Route routeTrip;
+    //Route routeTrip=  new RestTemplate().getForObject("http://localhost:8080/api/routes/{id}", Route.class, getId());
+
 
     public Trip (LocalDateTime departure_time, LocalDateTime arrival_time, String status, Route routeTrip){
-        this.departure_time = departure_time;
-        this.arrival_time = arrival_time;
+        this.departureTime = departure_time;
+        this.arrivalTime = arrival_time;
         this.status = status;
         this.routeTrip = routeTrip;
     }

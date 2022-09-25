@@ -24,6 +24,8 @@ public class StationService {
         return stationRepository.findAll();
     }
 
+    public Optional<Station> getStation(Long stationId){ return stationRepository.findById(stationId);}
+
     public void addNewStation(Station station){
         Optional<Station> stationByName =
                 stationRepository.findStationByStationName(station.getStationName());
@@ -66,5 +68,7 @@ public class StationService {
     public void deleteStation(Long stationId) {
         stationRepository.deleteById(stationId);
     }
+
+    public void deleteStations(){stationRepository.deleteAll();}
 
 }

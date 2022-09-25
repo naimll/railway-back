@@ -28,6 +28,11 @@ public class StationController {
         return stationService.getStations();
     }
 
+    @GetMapping(path = "{stationId}")
+    public Optional<Station> getStation(@PathVariable("stationId") Long stationId){
+        return stationService.getStation(stationId);
+    }
+
     @PostMapping
     public void createNewStations(@RequestBody Station station){
         stationService.addNewStation(station);
@@ -44,6 +49,12 @@ public class StationController {
     public void deleteStation(@PathVariable("stationId") Long stationId){
         stationService.deleteStation(stationId);
     }
+
+    @DeleteMapping
+    public void deleteStations(){
+        stationService.deleteStations();
+    }
+
  /*   @Autowired
     StationRepository stationRepository;
     @GetMapping("/stations")

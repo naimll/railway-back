@@ -1,5 +1,6 @@
 package com.travelservice.routemodule.station.weather;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
@@ -8,7 +9,9 @@ import org.springframework.web.client.RestTemplate;
 
 @RestController
 public class WeatherController {
-    String apiKey = System.getenv("API_KEY");
+
+    @Value("${openweathermap_apikey}")
+    String apiKey;
 
     @GetMapping( value = "/{city}")
     public @ResponseBody Object getWeatherByCity(@PathVariable String city ){
@@ -25,7 +28,7 @@ public class WeatherController {
         RestTemplate restTemplate = new RestTemplate();
 
         ResponseEntity<Object> response = restTemplate.
-                getForEntity("https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=90ce174e8abeec3884c95933d6157165&units=imperial", Object.class);
+                getForEntity("https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + apiKey, Object.class);
         return response;
     }
 }
